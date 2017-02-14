@@ -7,6 +7,7 @@
     var static_url = site_url + 'static/';
     var min_width = 100;
     var min_height = 100;
+    var temp_url = '';
 
     function bookmarklet(msg) {
         // load CSS
@@ -31,13 +32,14 @@
         jQuery.each(jQuery('img[src$="jpg"]'), function (index, image) {
             if (jQuery(image).width() >= min_width && jQuery(image).height() >= min_height) {
                 image_url = jQuery(image).attr('src');
+                // temp_url = $(location).attr('protocol') + "//" + $(location).attr('host') + image_url;
                 jQuery('#bookmarklet .images').append('<a href="#"><img src="' + image_url + '" /></a>');
             }
         });
 
         // when an image is selected open URL with it
         jQuery('#bookmarklet .images a').click(function (e) {
-            selected_image = jQuery(this).children('img').attr('src');
+            selected_image = $(location).attr('protocol') + "//" + $(location).attr('host') + "/" + jQuery(this).children('img').attr('src');
             // hide bookmarklet
             jQuery('#bookmarklet').hide();
             // open new window to submit the image
