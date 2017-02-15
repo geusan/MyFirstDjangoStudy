@@ -3,6 +3,7 @@ from . import views
 
 
 urlpatterns = [
+    url(r'^/$', views.dashboard, name='dashboard'),
     # previous login view
     url(r'^login/$', views.user_login, name='login'),
 
